@@ -1,8 +1,8 @@
 include_directories(
 	.
 	backends
-	../glfw/include
-	../glfw/deps
+	${glfw_SOURCE_DIR}/include
+	${glfw_SOURCE_DIR}/deps
 	../glad/include
 )
 
@@ -13,4 +13,6 @@ add_library(imgui STATIC
 	imgui.cpp
 	backends/imgui_impl_opengl3.cpp
 	backends/imgui_impl_glfw.cpp
-)
+ "imgui_spectrum.h")
+
+ target_compile_definitions(imgui PRIVATE GLFW_INCLUDE_NONE)
