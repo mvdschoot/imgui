@@ -1,18 +1,23 @@
-include_directories(
-	.
-	backends
-	${glfw_SOURCE_DIR}/include
-	${glfw_SOURCE_DIR}/deps
-	../glad/include
-)
+cmake_minimum_required(VERSION 3.15)
+
+project(imgui LANGUAGES CXX)
 
 add_library(imgui STATIC
-	imgui_draw.cpp
-	imgui_tables.cpp
-	imgui_widgets.cpp
-	imgui.cpp
-	backends/imgui_impl_opengl3.cpp
-	backends/imgui_impl_glfw.cpp
- "imgui_spectrum.h")
+		imgui.cpp
+		#        img_demo.cpp
+		imgui_draw.cpp
+		imgui_tables.cpp
+		imgui_widgets.cpp
 
- target_compile_definitions(imgui PRIVATE GLFW_INCLUDE_NONE)
+		backends/imgui_impl_glfw.cpp
+		backends/imgui_impl_opengl3.cpp
+)
+
+target_include_directories(imgui PUBLIC
+		${CMAKE_CURRENT_SOURCE_DIR}
+		${CMAKE_CURRENT_SOURCE_DIR}/backends
+)
+
+target_link_libraries(imgui PUBLIC
+		glfw
+)
